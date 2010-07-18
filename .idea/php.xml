@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PhpProjectConfiguration">
+    <sdk>
+      <PhpSdkConfig version="5.3.1" home="/Applications/XAMPP/xamppfiles/bin">
+        <include_paths>
+          <path value="." />
+          <path value="/Applications/XAMPP/xamppfiles/lib/php" />
+          <path value="/Applications/XAMPP/xamppfiles/lib/php/pear" />
+        </include_paths>
+      </PhpSdkConfig>
+    </sdk>
+  </component>
+</project>
+
