@@ -15,39 +15,66 @@ namespace G3RestClient
 {
     public partial class MainPage : UserControl
     {
+        private List<Content.BreadcrumbItem> bcItems;
         public MainPage()
         {
             InitializeComponent();
+            bcItems = new List<Content.BreadcrumbItem>();
         }
         /// <summary>
         /// After the Frame navigates, ensure the <see cref="HyperlinkButton"/> representing the current page is selected
         /// </summary>
         private void ContentFrame_Navigated(object sender, NavigationEventArgs e)
         {
-            HyperlinkButton hb = new HyperlinkButton();
-            hb.NavigateUri = e.Uri;
-            hb.TargetName = "ContentFrame";
-            TextBlock tb = new TextBlock();
-            tb.Text = e.Uri.ToString();
-            hb.Content = tb;
-            LinksStackPanel.Children.Insert(0, hb);
-            //foreach (UIElement child in LinksStackPanel.Children)
-            //{
-            //    HyperlinkButton hb = child as HyperlinkButton;
-            //    if (hb != null && hb.NavigateUri != null)
-            //    {
-            //        if (hb.NavigateUri.ToString().Equals(e.Uri.ToString()))
-            //        {
-            //            VisualStateManager.GoToState(hb, "ActiveLink", true);
-            //        }
-            //        else
-            //        {
-            //            VisualStateManager.GoToState(hb, "InactiveLink", true);
-            //        }
-            //    }
-            //}
+            Views.Item ChildFrame = e.Content as Views.Item;
+            if(ChildFrame != null)
+                ChildFrame.ItemDataLoad += new Views.Item.ItemDataLoadEvent(ChildFrame_ItemDataLoad);
         }
 
+        private int currentLevel = 0;
+
+        void ChildFrame_ItemDataLoad(object sender, Views.ItemDataEventArgs e)
+        {
+            Content.BreadcrumbItem bci = new Content.BreadcrumbItem()
+            {
+                Title = e.Title,
+                Uri = e.Source
+            };
+
+            try {
+                if (currentLevel < e.Level)
+                {
+                    LinksStackPanel.Children.Add(bci);
+                }
+                else if (currentLevel == e.Level) 
+                {
+                    LinksStackPanel.Children.Remove(LinksStackPanel.Children.Last());
+                    LinksStackPanel.Children.Add(bci);
+                }
+                else if (currentLevel > e.Level)
+                {
+                    List<UIElement> links = LinksStackPanel.Children.ToList<UIElement>();
+                    LinksStackPanel.Children.Clear();
+                    int i = 0;
+                    links.ForEach(delegate(UIElement element)
+                    {
+                        if (i < e.Level) {
+                            LinksStackPanel.Children.Add(element);
+                        }
+                        i++;
+                    });
+                }
+
+                currentLevel = e.Level;
+               
+
+
+            }
+            catch (ArgumentException ex) { }
+            catch (Exception ex) { }
+            LayoutRoot.IsBusy = false;
+        }
+        
         /// <summary>
         /// If an error occurs during navigation, show an error window
         /// </summary>
@@ -59,6 +86,12 @@ namespace G3RestClient
 
         private void ContentFrame_FragmentNavigation(object sender, FragmentNavigationEventArgs e)
         {
+            LayoutRoot.IsBusy = false;
+        }
+
+        private void ContentFrame_Navigating(object sender, NavigatingCancelEventArgs e)
+        {
+            LayoutRoot.IsBusy = true;
 
         }
 

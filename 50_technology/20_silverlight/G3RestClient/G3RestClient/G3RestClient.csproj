@@ -81,6 +81,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Content\BreadcrumbItem.xaml.cs">
+      <DependentUpon>BreadcrumbItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ItemDataEventArgs.cs" />
     <Compile Include="Content\G3Album.xaml.cs">
       <DependentUpon>G3Album.xaml</DependentUpon>
     </Compile>
@@ -110,6 +114,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="Content\BreadcrumbItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Content\G3Album.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -136,6 +144,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\AppManifest.xml" />
   </ItemGroup>
   <ItemGroup>

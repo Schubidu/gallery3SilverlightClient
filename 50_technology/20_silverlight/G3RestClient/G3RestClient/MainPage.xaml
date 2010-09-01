@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="G3RestClient.MainPage"
+﻿<UserControl
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,10 +6,12 @@
       xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation" 
       xmlns:uriMapper="clr-namespace:System.Windows.Navigation;assembly=System.Windows.Controls.Navigation"
       xmlns:dataControls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Data.DataForm.Toolkit" 
+    xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" x:Class="G3RestClient.MainPage" 
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
 
-    <Grid x:Name="LayoutRoot" Background="White">
+    <toolkit:BusyIndicator x:Name="LayoutRoot" Background="White">
+        <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
@@ -17,11 +19,11 @@
         <Grid.RowDefinitions>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel x:Name="LinksStackPanel">
-        </StackPanel>
+        
+        <StackPanel x:Name="LinksStackPanel"/>
         <Border x:Name="ContentBorder" Grid.Row="0" Grid.Column="1">
             <navigation:Frame x:Name="ContentFrame" 
-                              Source="/Item/1" Navigated="ContentFrame_Navigated" NavigationFailed="ContentFrame_NavigationFailed">
+                              Source="/Item/1" Navigated="ContentFrame_Navigated" FragmentNavigation="ContentFrame_FragmentNavigation" Navigating="ContentFrame_Navigating" NavigationFailed="ContentFrame_NavigationFailed">
                 <navigation:Frame.UriMapper>
                     <uriMapper:UriMapper>
                         <uriMapper:UriMapping Uri="" MappedUri="/Views/Item.xaml?ItemId=1"/>
@@ -30,6 +32,7 @@
                 </navigation:Frame.UriMapper>
             </navigation:Frame>
         </Border>
+        </Grid>
 
-    </Grid>
+    </toolkit:BusyIndicator>
 </UserControl>

@@ -18,6 +18,9 @@ namespace G3RestClient.Views
 {
     public partial class Item : Page
     {
+        public delegate void ItemDataLoadEvent(Object sender, ItemDataEventArgs e);
+        public event ItemDataLoadEvent ItemDataLoad;
+
         public Item()
         {
             InitializeComponent();
@@ -60,7 +63,8 @@ namespace G3RestClient.Views
  //           list.ItemsSource = items;
         }
 
-        private void OnItemDataLoaded(Helper.Item item) {
+        protected virtual void OnItemDataLoaded(Helper.Item item)
+        {
             if (item != null) {
                 LayoutRoot.Children.Clear();
                 this.Title = item.Entity.Title;
@@ -75,6 +79,8 @@ namespace G3RestClient.Views
                 else if (item.Entity.Type.Equals("photo")) {
                     LayoutRoot.Children.Add(new Content.G3Photo(item.Entity));
                 }
+                ItemDataEventArgs itemDataEventArgs = new ItemDataEventArgs(item.Entity, this.NavigationService.Source);
+                this.ItemDataLoad(this, itemDataEventArgs);
             }
         }
     }
