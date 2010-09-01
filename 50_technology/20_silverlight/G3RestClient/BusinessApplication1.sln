@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessApplication1", "BusinessApplication1\BusinessApplication1.csproj", "{E19B4FFD-B7B7-44D2-BA23-A50FC14C8311}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CEA3CA94-EDFC-4759-AB9A-7E5077530FC6} = {CEA3CA94-EDFC-4759-AB9A-7E5077530FC6}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessApplication1.Web", "BusinessApplication1.Web\BusinessApplication1.Web.csproj", "{CEA3CA94-EDFC-4759-AB9A-7E5077530FC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestSharp.Silverlight", "..\..\..\..\Desktop\johnsheehan-RestSharp-70070ae\RestSharp.Silverlight\RestSharp.Silverlight.csproj", "{11F84600-0978-48B9-A28F-63B3781E54B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gallery3Rest", "Gallery3Rest\Gallery3Rest.csproj", "{9C4AC1E9-C489-4598-BA4A-49EB9CB58CFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "G3RestClient", "G3RestClient\G3RestClient.csproj", "{50E19539-ADF8-439E-BD5D-A88660D39CA4}"
+EndProject
+Global
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E19B4FFD-B7B7-44D2-BA23-A50FC14C8311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E19B4FFD-B7B7-44D2-BA23-A50FC14C8311}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E19B4FFD-B7B7-44D2-BA23-A50FC14C8311}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E19B4FFD-B7B7-44D2-BA23-A50FC14C8311}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEA3CA94-EDFC-4759-AB9A-7E5077530FC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEA3CA94-EDFC-4759-AB9A-7E5077530FC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEA3CA94-EDFC-4759-AB9A-7E5077530FC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEA3CA94-EDFC-4759-AB9A-7E5077530FC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11F84600-0978-48B9-A28F-63B3781E54B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11F84600-0978-48B9-A28F-63B3781E54B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11F84600-0978-48B9-A28F-63B3781E54B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11F84600-0978-48B9-A28F-63B3781E54B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C4AC1E9-C489-4598-BA4A-49EB9CB58CFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C4AC1E9-C489-4598-BA4A-49EB9CB58CFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C4AC1E9-C489-4598-BA4A-49EB9CB58CFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C4AC1E9-C489-4598-BA4A-49EB9CB58CFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50E19539-ADF8-439E-BD5D-A88660D39CA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50E19539-ADF8-439E-BD5D-A88660D39CA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50E19539-ADF8-439E-BD5D-A88660D39CA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50E19539-ADF8-439E-BD5D-A88660D39CA4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,35 @@
+﻿<navigation:Page x:Class="G3RestClient.Views.Item" 
+           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+           xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+           xmlns:toolkit="clr-namespace:Microsoft.Windows;assembly=System.Windows.Controls.Toolkit"
+           xmlns:controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Toolkit"
+           mc:Ignorable="d"
+           xmlns:navigation="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Navigation"
+           d:DesignWidth="640" d:DesignHeight="480"
+           Title="Item Page">
+    <Grid x:Name="LayoutRoot">
+        <ListBox x:Name="list" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <ItemsControl ItemsSource="{Binding Items}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <controls:WrapPanel Orientation="Horizontal" HorizontalAlignment="Stretch" />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <!--<ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>                                
+                                    <Rectangle Width="50" Height="50" Margin="5" Fill="Red" />
+                                    <TextBlock Text="{Binding}" />
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate-->>
+                    </ItemsControl>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </Grid>
+</navigation:Page>
