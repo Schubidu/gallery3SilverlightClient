@@ -10,7 +10,7 @@
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
 
-    <toolkit:BusyIndicator x:Name="LayoutRoot" Background="White">
+    <toolkit:BusyIndicator x:Name="LayoutRoot" Background="White" Style="{StaticResource BusyIndicatorStyle1}">
         <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>

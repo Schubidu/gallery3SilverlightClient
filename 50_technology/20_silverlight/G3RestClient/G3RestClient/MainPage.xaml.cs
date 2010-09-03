@@ -16,6 +16,7 @@ namespace G3RestClient
     public partial class MainPage : UserControl
     {
         private List<Content.BreadcrumbItem> bcItems;
+        private Helper.BreadcrumbTitle title = new Helper.BreadcrumbTitle();
         public MainPage()
         {
             InitializeComponent();
@@ -27,8 +28,11 @@ namespace G3RestClient
         private void ContentFrame_Navigated(object sender, NavigationEventArgs e)
         {
             Views.Item ChildFrame = e.Content as Views.Item;
-            if(ChildFrame != null)
+            if (ChildFrame != null)
+            {
                 ChildFrame.ItemDataLoad += new Views.Item.ItemDataLoadEvent(ChildFrame_ItemDataLoad);
+                ChildFrame.Title = title.ToString();
+            }
         }
 
         private int currentLevel = 0;
@@ -45,34 +49,40 @@ namespace G3RestClient
                 if (currentLevel < e.Level)
                 {
                     LinksStackPanel.Children.Add(bci);
+                    title.Add(e.Title);
                 }
                 else if (currentLevel == e.Level) 
                 {
                     LinksStackPanel.Children.Remove(LinksStackPanel.Children.Last());
                     LinksStackPanel.Children.Add(bci);
+                    title.Remove(title.Last());
+                    title.Add(e.Title);
                 }
                 else if (currentLevel > e.Level)
                 {
                     List<UIElement> links = LinksStackPanel.Children.ToList<UIElement>();
                     LinksStackPanel.Children.Clear();
+                    title.Clear();
                     int i = 0;
                     links.ForEach(delegate(UIElement element)
                     {
                         if (i < e.Level) {
                             LinksStackPanel.Children.Add(element);
+                            title.Add((element as Content.BreadcrumbItem).Title);
                         }
                         i++;
                     });
                 }
-
                 currentLevel = e.Level;
-               
-
+                (sender as Views.Item).Title = title.ToString();
 
             }
             catch (ArgumentException ex) { }
             catch (Exception ex) { }
             LayoutRoot.IsBusy = false;
+
+            //Settings.Write<List<UIElement>>("breadcrumb", LinksStackPanel.Children.ToList<UIElement>());
+
         }
         
         /// <summary>

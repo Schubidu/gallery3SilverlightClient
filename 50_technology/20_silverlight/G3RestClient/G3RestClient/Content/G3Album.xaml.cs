@@ -14,8 +14,35 @@ namespace G3RestClient.Content
 {
     public partial class G3Album : UserControl
     {
-        private List<G3Item> items;
+ 
+        public static readonly DependencyProperty ItemsProperty = DependencyProperty.Register(
+            "List<G3Item>",
+            typeof(List<G3Item>),
+            typeof(G3Album),
+            new PropertyMetadata(null,
+                new PropertyChangedCallback(OnItemsChanged)
+            )
+        );
+        public List<G3Item> Items
+        {
+            get { return (List<G3Item>)GetValue(ItemsProperty); }
+            set { SetValue(ItemsProperty, value); }
+        }
+        private static void OnItemsChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            G3Album album = (d as G3Album);
+            album.PanelWrapper.Children.Clear();
+            album.Items.ForEach(delegate(G3Item item)
+            {
+                try { album.PanelWrapper.Children.Add(item); }
+                catch (Exception ex) { 
+                    
+                }
+            });
+        }
 
+
+        
         public G3Album()
         {
             InitializeComponent();
@@ -23,12 +50,7 @@ namespace G3RestClient.Content
 
         public G3Album(List<G3Item> items):this()
         {
-            // TODO: Complete member initialization
-            this.items = items;
-            this.items.ForEach(delegate(G3Item item)
-            {
-                PanelWrapper.Children.Add(item);
-            });
+            this.Items = items;
         }
     }
 }

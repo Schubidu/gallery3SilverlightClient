@@ -19,10 +19,21 @@ namespace G3RestClient.Content
         public G3Item()
         {
             InitializeComponent();
+            this.MouseEnter += new MouseEventHandler(G3Item_MouseEnter);
+            this.MouseLeave += new MouseEventHandler(G3Item_MouseLeave);
         }
-        public G3Item(string itemUrl)
+
+        void G3Item_MouseLeave(object sender, MouseEventArgs e)
         {
-            InitializeComponent();
+            VisualStateManager.GoToState(this, "MouseLeaveState", true);
+        }
+
+        void G3Item_MouseEnter(object sender, MouseEventArgs e)
+        {
+            VisualStateManager.GoToState(this, "MouseEnterState", true);
+        }
+        public G3Item(string itemUrl):this()
+        {
             this.Title = itemUrl;
             //this.DataContext = this;
             var client = new RestClient(itemUrl);

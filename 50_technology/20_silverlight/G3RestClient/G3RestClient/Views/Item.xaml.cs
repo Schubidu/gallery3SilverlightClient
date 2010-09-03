@@ -43,24 +43,11 @@ namespace G3RestClient.Views
            var client = new RestClient("http://bilder.schultstefan.de/index.php/rest/");
            var request = new RestRequest("item/{itemId}", Method.GET);
            request.AddUrlSegment("itemId", itemId);
-           //request.AddHeader("X-Gallery-Request-Method", "get");
-           //HttpHeader header = new HttpHeader();
-           //header.Name = "X-Gallery-Request-Key";
-           //header.Value = "d4bbbfdecc2fe3f3d39c0f638347fe5b";
-//           request.AddParameter("X-Gallery-Request-Key", "d4bbbfdecc2fe3f3d39c0f638347fe5b", ParameterType.HttpHeader);
-           //request.AddHeader("", "d4bbbfdecc2fe3f3d39c0f638347fe5b");
            client.ExecuteAsync<Helper.Item>(request, (response) =>
            {
                var resource = response.Data;
                Dispatcher.BeginInvoke(() => this.OnItemDataLoaded(resource));
            });
-            //  this.textBlock1.Text = "ItemId: " + itemId;
-
- //           List<> items = new List<Data>();
- //           items.Add(new Data(int.Parse(itemId)));
- ////           items.Add(new Data(10));
-
- //           list.ItemsSource = items;
         }
 
         protected virtual void OnItemDataLoaded(Helper.Item item)
@@ -69,12 +56,14 @@ namespace G3RestClient.Views
                 LayoutRoot.Children.Clear();
                 this.Title = item.Entity.Title;
                 if(item.Entity.Type.Equals("album")){
+                    G3Album album = new G3Album();
                     List<G3Item> items = new List<G3Item>();
                     item.Members.ForEach(delegate(string member)
                     {
                         items.Add(new G3Item(member));
                     });
-                    LayoutRoot.Children.Add(new Content.G3Album(items));
+                    album.Items = items;
+                    LayoutRoot.Children.Add(album);
                 }
                 else if (item.Entity.Type.Equals("photo")) {
                     LayoutRoot.Children.Add(new Content.G3Photo(item.Entity));
