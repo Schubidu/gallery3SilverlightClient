@@ -9,20 +9,40 @@
     xmlns:toolkit="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit" x:Class="G3RestClient.MainPage" 
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="400">
-
+	
     <toolkit:BusyIndicator x:Name="LayoutRoot" Background="White" Style="{StaticResource BusyIndicatorStyle1}">
+    	<VisualStateManager.VisualStateGroups>
+    		<VisualStateGroup x:Name="ViewGroup">
+    			<VisualState x:Name="ViewInFullscreenState">
+    				<Storyboard>
+    					<ColorAnimation Duration="0" To="#FF53301F" Storyboard.TargetProperty="(Control.Background).(SolidColorBrush.Color)" Storyboard.TargetName="FullscreenButton" d:IsOptimized="True"/>
+    				</Storyboard>
+    			</VisualState>
+    		</VisualStateGroup>
+    	</VisualStateManager.VisualStateGroups>
         <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        
-        <StackPanel x:Name="LinksStackPanel"/>
-        <Border x:Name="ContentBorder" Grid.Row="0" Grid.Column="1">
-            <navigation:Frame x:Name="ContentFrame" 
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Button Content="FS" x:Name="FullscreenButton" Grid.Row="0" Grid.Column="0" Margin="7">
+                <ToolTipService.ToolTip>
+                    <ToolTip>Fullscreen</ToolTip>
+                </ToolTipService.ToolTip>
+            </Button>
+            <Button Content="OOB" Grid.Row="0" Grid.Column="1" Margin="7">
+                <ToolTipService.ToolTip>
+                    <ToolTip>Out Of Browser</ToolTip>
+                </ToolTipService.ToolTip>
+            </Button>
+
+            <StackPanel x:Name="LinksStackPanel"  Grid.Row="0" Grid.Column="2" VerticalAlignment="Bottom" Margin="7" Orientation="Horizontal"/>
+            <navigation:Frame x:Name="ContentFrame"  Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"
                               Source="/Item/1" Navigated="ContentFrame_Navigated" FragmentNavigation="ContentFrame_FragmentNavigation" Navigating="ContentFrame_Navigating" NavigationFailed="ContentFrame_NavigationFailed">
                 <navigation:Frame.UriMapper>
                     <uriMapper:UriMapper>
@@ -31,7 +51,6 @@
                     </uriMapper:UriMapper>
                 </navigation:Frame.UriMapper>
             </navigation:Frame>
-        </Border>
         </Grid>
 
     </toolkit:BusyIndicator>

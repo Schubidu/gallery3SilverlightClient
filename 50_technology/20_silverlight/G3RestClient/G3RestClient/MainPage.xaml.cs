@@ -21,6 +21,12 @@ namespace G3RestClient
         {
             InitializeComponent();
             bcItems = new List<Content.BreadcrumbItem>();
+            FullscreenButton.Click += new RoutedEventHandler(FullscreenButton_Click);
+        }
+
+        void FullscreenButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.Current.Host.Content.IsFullScreen = !App.Current.Host.Content.IsFullScreen;
         }
         /// <summary>
         /// After the Frame navigates, ensure the <see cref="HyperlinkButton"/> representing the current page is selected
@@ -74,6 +80,8 @@ namespace G3RestClient
                     });
                 }
                 currentLevel = e.Level;
+                Content.BreadcrumbItem firstBci = LinksStackPanel.Children.First() as Content.BreadcrumbItem;
+                VisualStateManager.GoToState(firstBci, "FirstItemState", false);
                 (sender as Views.Item).Title = title.ToString();
 
             }

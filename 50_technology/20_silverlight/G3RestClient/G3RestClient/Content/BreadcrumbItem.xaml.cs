@@ -17,6 +17,18 @@ namespace G3RestClient.Content
         public BreadcrumbItem()
         {
             InitializeComponent();
+            this.MouseEnter += new MouseEventHandler(BreadcrumbItem_MouseEnter);
+            this.MouseLeave += new MouseEventHandler(BreadcrumbItem_MouseLeave);
+        }
+
+        void BreadcrumbItem_MouseLeave(object sender, MouseEventArgs e)
+        {
+            VisualStateManager.GoToState(this, "Base", true);
+        }
+
+        void BreadcrumbItem_MouseEnter(object sender, MouseEventArgs e)
+        {
+            VisualStateManager.GoToState(this, "MouseEnterState", true);
         }
 
         public static readonly DependencyProperty UriProperty = DependencyProperty.Register(
